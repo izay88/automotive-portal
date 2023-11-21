@@ -45,7 +45,7 @@ jobs:
         id: deployment_test
         with:
           token: '${{ github.token }}'
-          environment: Production
+          environment: Testing
 
       - name: Deploy my app
         run: |
