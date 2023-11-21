@@ -4,8 +4,8 @@ on: [push]
 
 jobs:
   deploy_to_test:
+    name: my deployment
     runs-on: ubuntu-latest
-    if: "!contains(github.ref, 'master')"
     steps:
       - uses: actions/checkout@v1
       - uses: chrnorm/deployment-action@v2
