@@ -4,14 +4,6 @@ on:
   push:
     branches:
       - master
-      - release/1.0.0
-#      - feature/*
-  pull_request:
-    branches:
-      - bugfix/*
-      - feature/*
-      - hotfix/*
-      - release/*
 
 jobs:
   build_and_test:
@@ -41,7 +33,7 @@ jobs:
       uses: HighwayThree/jira-upload-build-info@master
       with:
         cloud-id: '${{ secrets.CLOUD_ID }}'
-        client-id: '${{ secrets.CLIENT_ID }}'
+        client-id: 'R8CBSDUKjoUGOWgyl7AG6njfq8dPO2rH'
         client-secret: '${{ secrets.CLIENT_SECRET }}'
         pipeline-id: '${{ github.repository }} ${{ github.workflow }}'
         build-number: ${{ github.run_number }}
@@ -93,7 +85,7 @@ jobs:
         uses: HighwayThree/jira-upload-deployment-info@master
         with:
           cloud-id: '${{ secrets.CLOUD_ID }}'
-          client-id: '${{ secrets.CLIENT_ID }}'
+          client-id: 'ATOAi_vrbUJe0DZGaUo2OZRjIo8SckglA4Y71Pmkojr211T_gcoTmsYaJMkUX5xkamnkB2167457'
           client-secret: '${{ secrets.CLIENT_SECRET }}'
           deployment-sequence-number: '${{ github.run_id }}'
           update-sequence-number: '${{ github.run_id }}'
@@ -149,7 +141,7 @@ jobs:
         uses: HighwayThree/jira-upload-deployment-info@master
         with:
           cloud-id: '${{ secrets.CLOUD_ID }}'
-          client-id: '${{ secrets.CLIENT_ID }}'
+          client-id: 'ATOAi_vrbUJe0DZGaUo2OZRjIo8SckglA4Y71Pmkojr211T_gcoTmsYaJMkUX5xkamnkB2167457'
           client-secret: '${{ secrets.CLIENT_SECRET }}'
           deployment-sequence-number: '${{ github.run_id }}'
           update-sequence-number: '${{ github.run_id }}'
