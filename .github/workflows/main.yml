@@ -6,15 +6,16 @@ jobs:
   build:
     name: Deploy my production app
     runs-on: ubuntu-latest
+    uses: actions/checkout@v1
     
   deploy_to_production:
+    runs-on: ubuntu-latest
+    needs: build
+    if: "contains(github.ref, 'master')"
     steps:
-      - uses: actions/checkout@v1
-
-      - if: "contains(github.ref, 'master')"
-        uses: chrnorm/deployment-action@v2
+      - uses: chrnorm/deployment-action@v2
         name: Create GitHub deployment
-        id: deployment
+        id: deployment prod
         with:
           token: '${{ github.token }}'
           environment: Production
@@ -40,15 +41,13 @@ jobs:
           state: 'failure'
 
   deploy_to_test:
+    runs-on: ubuntu-latest
+    needs: build
+    if: "!contains(github.ref, 'master')"
     steps:
-      - uses: actions/checkout@v1
-
       - uses: chrnorm/deployment-action@v2
-
-      - if: "!contains(github.ref, 'master')"
-        uses: chrnorm/deployment-action@v2
         name: Create GitHub testing deployment
-        id: deployment
+        id: deployment test
         with:
           token: '${{ github.token }}'
           environment: Production
