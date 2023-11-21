@@ -36,7 +36,7 @@ jobs:
         client-id: 'R8CBSDUKjoUGOWgyl7AG6njfq8dPO2rH'
         client-secret: 'ATOAi_vrbUJe0DZGaUo2OZRjIo8SckglA4Y71Pmkojr211T_gcoTmsYaJMkUX5xkamnkB2167457'
         pipeline-id: '${{ github.repository }} ${{ github.workflow }}'
-        build-number: ${{ github.run_number }}
+        build-number: '${{ github.run_number }}'
         build-display-name: 'Workflow: ${{ github.workflow }} (#${{ github.run_number }})'
         build-state: "${{ env.BUILD_STATE }}"
         build-url: '${{github.event.repository.url}}/actions/runs/${{github.run_id}}'
@@ -102,4 +102,5 @@ jobs:
           pipeline-url: '${{github.event.repository.url}}/actions/runs/${{github.run_id}}'
           environment-id: 'Prod'
           environment-display-name: 'Prod'
-          environment-type: 'production'
+          environment-type: 'Production'
+          ENV_PROD: 'production'
