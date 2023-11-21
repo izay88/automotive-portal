@@ -3,17 +3,17 @@ name: Deploy
 on: [push]
 
 jobs:
-  deploy_to_production:
+  build:
     name: Deploy my production app
-
     runs-on: ubuntu-latest
-
+    
+  deploy_to_production:
     steps:
       - uses: actions/checkout@v1
 
-      - name: Create GitHub deployment
-        if: "contains(github.ref, 'master')"
+      - if: "contains(github.ref, 'master')"
         uses: chrnorm/deployment-action@v2
+        name: Create GitHub deployment
         id: deployment
         with:
           token: '${{ github.token }}'
@@ -40,18 +40,14 @@ jobs:
           state: 'failure'
 
   deploy_to_test:
-    name: Deploy my testing app
-
-    runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v1
 
       - uses: chrnorm/deployment-action@v2
 
-      - name: Create GitHub testing deployment
-        if: "!contains(github.ref, 'master')"
+      - if: "!contains(github.ref, 'master')"
         uses: chrnorm/deployment-action@v2
+        name: Create GitHub testing deployment
         id: deployment
         with:
           token: '${{ github.token }}'
