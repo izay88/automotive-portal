@@ -3,14 +3,17 @@ name: Deploy
 on: [push]
 
 jobs:
-  deploy_to_test:
-    name: my deployment
+  deploy:
+    name: Deploy my app
+
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v1
+
       - uses: chrnorm/deployment-action@v2
-        name: Create GitHub testing deployment
-        id: deployment_test
+        name: Create GitHub deployment
+        id: deployment
         with:
           token: '${{ github.token }}'
           environment: Testing
@@ -18,7 +21,6 @@ jobs:
       - name: Deploy my app
         run: |
           # add your deployment code here
-
       - name: Update deployment status (success)
         if: success()
         uses: chrnorm/deployment-status@v2
