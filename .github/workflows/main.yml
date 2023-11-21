@@ -4,14 +4,6 @@ on:
   push:
     branches:
       - master
-      - release/1.0.0
-#      - feature/*
-  pull_request:
-    branches:
-      - bugfix/*
-      - feature/*
-      - hotfix/*
-      - release/*
 
 jobs:
   build_and_test:
