@@ -11,10 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v1
 
-      - uses: chrnorm/deployment-action@v2
-
       - name: Create GitHub deployment
         if: "contains(github.ref, 'master')"
+        uses: chrnorm/deployment-action@v2
         id: deployment
         with:
           token: '${{ github.token }}'
@@ -52,6 +51,7 @@ jobs:
 
       - name: Create GitHub testing deployment
         if: "!contains(github.ref, 'master')"
+        uses: chrnorm/deployment-action@v2
         id: deployment
         with:
           token: '${{ github.token }}'
